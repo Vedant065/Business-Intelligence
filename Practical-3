@@ -1,0 +1,39 @@
+CREATE DATABASE retail_db;
+USE retail_db;
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    age INT,
+    gender VARCHAR(10),
+    city VARCHAR(50)
+);
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    sale_date DATE,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+INSERT INTO customers VALUES
+(1,'Amit',25,'Male','Pune'),
+(2,'Neha',30,'Female','Mumbai'),
+(3,'Rahul',35,'Male','Nagpur');
+INSERT INTO products VALUES
+(101,'Laptop','Electronics',60000),
+(102,'Mobile','Electronics',30000),
+(103,'Chair','Furniture',5000);
+INSERT INTO sales VALUES
+(1001,'2024-01-10',1,101,1,60000),
+(1002,'2024-01-12',2,102,2,60000),
+(1003,'2024-02-05',3,103,3,15000);
+SELECT * FROM sales;
